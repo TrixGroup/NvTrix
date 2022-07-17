@@ -1,0 +1,67 @@
+body,#root {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 100vw;
+  width: 100vw;
+  padding: 0;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+input{
+  margin-bottom:5px;
+}
+
+
+.spinner{
+  animation: rotate .8s linear infinite;
+}
+
+@keyframes rotate{
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.none{
+  pointer-events: none;
+}
+
+.all{
+  pointer-events:all;
+}
+
+/*.mapboxgl-ctrl.mapboxgl-ctrl-attrib{
+  display: none;
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib.mapboxgl-attrib-empty{
+  display: none;
+  list-style: none;
+}*/
+
+*::-webkit-scrollbar{
+  width: 8px;
+  /* border-radius:0px 8px 8px 0px; */
+  background-color: rgb(150, 155, 160);
+}
+
+*::-webkit-scrollbar-thumb{
+  background-color: rgb(39, 135, 245);
+  border-radius: 8px;
+}
