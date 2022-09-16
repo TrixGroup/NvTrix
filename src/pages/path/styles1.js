@@ -14,9 +14,8 @@ export const useStyles = makeStyles((theme) => ({
 		gap:theme.spacing(1),
 		alignItems:'center',
 		borderRadius:0,
-		flexDirection:'column',	
+		flexDirection:'column',
 		// margin:theme.spacing(1),
-
 	},
 	profile:{
 		padding:theme.spacing(2)
@@ -30,6 +29,7 @@ export const useStyles = makeStyles((theme) => ({
 	intructions_container:{
 		padding:theme.spacing(1),
 		marginBottom:theme.spacing(1),
+		overflowY:'auto',
 	},
 	intructions:{
 		width:'100%',
@@ -66,6 +66,7 @@ export const useStyles = makeStyles((theme) => ({
 	left:{
 		height:'100%',
 		position:'sticky',
+		overflowY:'auto',
 		top:0,
 		[theme.breakpoints.down('sm')]:{
 			display:'none',
@@ -113,7 +114,8 @@ export const useStyles = makeStyles((theme) => ({
 		padding:8,	
 		backgroundColor:'#f5f5f5',
 		color:'#434',
-		transition:'all 1s',
+		// eslint-disable-next-line no-dupe-keys
+		// transition:'all 1s',
 		[theme.breakpoints.down('sm')]:{
 			// marginLeft:theme.spacing(1),
 			// marginRight:theme.spacing(1),

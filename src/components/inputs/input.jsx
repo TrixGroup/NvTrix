@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {TextField,FormControl,InputLabel,Select,MenuItem,IconButton} from '@mui/material';
 
 
@@ -9,8 +8,6 @@ import Eye1 from '@mui/icons-material/RemoveRedEye';
 function MuiInput(props) {
     const {inputType,menuItems,label,errorMessage,value,onChange,...inputProps} = props;
     console.log(menuItems,label);
-
-
 
     return (
     <>

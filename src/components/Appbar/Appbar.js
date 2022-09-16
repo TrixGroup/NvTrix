@@ -1,9 +1,13 @@
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 import {AppBar,Toolbar,Avatar,Button,Typography,Badge} from '@mui/material'
 import { Notifications } from '@mui/icons-material/';
 import { useNavigate } from 'react-router-dom'
 
+// import {FcAbout} from "react-icons/fc";
+
 import { makeStyles } from '@mui/styles';
+
+import APIService from '../../Service/APIService';
 
 const useStyles = makeStyles((theme) => ({
 	toolbar:{
@@ -14,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     root:{
         width:'100%',
         height:'100%',
-        backgroundColor:theme.palette.primary.main,
+        // backgroundColor:theme.palette.primary.main,
+        backgroundColor:'#000',
         overflowY:'scroll'
     },
     logoLg: {
@@ -51,7 +56,7 @@ const Appbar = () =>{
 
 
 	return (
-		<AppBar position="fixed">
+		<AppBar position="fixed" style={{backgroundColor:'#000'}}>
             <Toolbar className={classes.toolbar}>
                 <Typography
                     variant="h5"
@@ -60,12 +65,12 @@ const Appbar = () =>{
                     onClick={() => {
                         navigate('/login');
                     }}
-                >Nv Trip Advisor</Typography>
+                >{(APIService.appName())}</Typography>
                 <Typography
                     variant="h6"
                     className={classes.logoSm}
                     style={{ fontWeight: 500, cursor: 'pointer' }}
-                >NV TRIP</Typography>
+                >{(APIService.appName()).toLocaleUpperCase()}</Typography>
                 <div className={classes.icons}>
                     <Badge 
                         badgeContent={notification} 
@@ -75,11 +80,11 @@ const Appbar = () =>{
                             alert('click');
                         }}
                         >
-
                         <Notifications/>
                     </Badge>
-                    <Button style={{ color: '#fff' }} size="small">About</Button>
-                    <Button style={{ color: '#fff' }} size="small">Account</Button>
+                    <Button style={{ color: '#fff',fontSize:'.7em' }} size="small">About</Button>
+                    <Button style={{ color: '#fff',fontSize:'.7em' }} size="small">Account</Button>
+                    <Button style={{ color: '#fff',fontSize:'.7em' }} size="small">Help</Button>
                     <Avatar alt="avatar" src="" size="small"/>
                 </div>
             </Toolbar>

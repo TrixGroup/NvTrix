@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
 		paddingTop: theme.spacing(1),
 		paddingRight: theme.spacing(1),
 		paddingBottom: theme.spacing(1),
-		fontSize: '2.5em',
+		fontSize: '2.5em'
 	},
 	wrapper: {
 		maxWidth: 400,

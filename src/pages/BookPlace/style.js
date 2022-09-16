@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme)=>({
 		justifyContent:'center',
 		alignItems:'center',
 	},
-	form:{
-		padding:theme.spacing(1),
-		width:'100%',
-	},
+	// form:{
+	// 	padding:theme.spacing(1),
+	// 	width:'100%',
+	// },
 	baseInput:{
 		padding:theme.spacing(1),
 		borderRadius:theme.shape.borderRadius,
@@ -31,6 +31,39 @@ const useStyles = makeStyles((theme)=>({
 		display:'flex',
 		alignItems:'center',
 		justifyContent:'space-between',
+	},
+
+	form:{
+		position:'absolute',
+		
+		zIndex:999,
+		overflow:'scroll',
+		[theme.breakpoints.up('sm')]:{
+			bottom:28,
+			left:10,
+			top:150,
+			maxHeight:620,
+			width:400,
+		},
+		[theme.breakpoints.down('sm')]:{
+			padding:theme.spacing(1),
+			zIndex:9990,
+			width:'100%',
+			// height:'100%',
+			// width:300,
+			maxHeight:'unset',
+			display:'flex',
+			justifyContent:'center',
+			alignItems:'center',
+			backgroundColor:'transparent'
+		}
+	},
+	innerForm:{
+		[theme.breakpoints.down('sm')]:{
+			margin:theme.spacing(.2),
+			width:'100%',
+		},
+		padding:theme.spacing(1),
 	}
 
 }));

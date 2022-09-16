@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React,{useState} from 'react';
 import propTypes from 'prop-types';
 
 import {Button,Snackbar,IconButton,Typography} from '@mui/material';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme)=>({
 
 const CustomSnackbar = (props)=>{
 
-	const {message,open,textAction='',duration,actionFunction,icon,action=false} = props;
+	const {message,open,textAction='',duration,actionFunction,action=false,icon} = props;
 	const [visible,setVisible] = useState(open);
 
 	const classes = useStyles();
@@ -34,7 +34,7 @@ const CustomSnackbar = (props)=>{
 
 	const Action = (
 		<div className={classes.root}>
-			<SignalWifiOffOutlined/>
+			{icon ? (icon) : (<SignalWifiOffOutlined/>)}
 			<Typography>{message}</Typography>
 			{action && (
 				<Button color={'primary'} size={'small'} onClick={actionFunction}>

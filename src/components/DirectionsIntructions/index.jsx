@@ -1,7 +1,5 @@
+import React from 'react';
 import {Typography} from '@mui/material';
-import {Close,TurnLeft,TurnRight} from '@mui/icons-material';
-
-
 import {makeStyles} from '@mui/styles';
 
 const useStyles = makeStyles((theme)=>({
@@ -16,9 +14,10 @@ const useStyles = makeStyles((theme)=>({
 		display:'flex',
 		alignItems:'center',
 		gap:5,
+		backgroundColor:'#f5f5f5',
 		borderRadius:theme.shape.borderRadius,
 		'&:hover':{
-			backgroundColor:'rgba(0,0,0,.12)'
+			backgroundColor:'rgba(0,0,0,.5)'
 		}
 	},
 	right:{
@@ -30,23 +29,12 @@ const useStyles = makeStyles((theme)=>({
 
 
 const GetIcon = props =>{
-	const {side} = props;
-
-	if(side==='right'){
-		return (
-			<TurnRight/>
-		);
+	var {modifier='',type} = props;
+	if(modifier){
+		modifier = `_${modifier}`;
 	}
-
-	if(side==='left'){
-		return (
-			<TurnLeft/>
-		)
-	}
-
-	else{
-		return <Typography>{side}</Typography>
-	}
+	let icon = `https://github.com/mapbox/directions-icons/blob/master/src/png/dark/direction_${type}${modifier}.png?raw=true`;
+	return <img src={icon} alt={modifier} width={16} height={16} style={{marginRight:5}}/>
 }
 
 
@@ -56,7 +44,10 @@ const DirectionsIntructions = (props) =>{
 	const classes = useStyles();
 
 	const toKm = value =>{
-		return (value/1000).toFixed(2);
+		if(value < 1000){
+			return value + ' m';
+		}
+		return (value/1000).toFixed(2) + ' Km';
 	}
 
 	const toHr = value =>{
@@ -67,7 +58,7 @@ const DirectionsIntructions = (props) =>{
 		<div style={{width:'100%'}}>
 			{steps?.map((step,i)=>(
 				<div className={classes.list}>
-					<GetIcon side={step.driving_side} />
+					<GetIcon modifier={step.maneuver.modifier?step.maneuver.modifier:''} type={step.maneuver.type} />
 					<div style={{}}>
 							<Typography 
 								className={classes.title} 
@@ -80,7 +71,7 @@ const DirectionsIntructions = (props) =>{
 								align={'left'} 
 								variant={'body2'}
 							>
-								Distance : {toKm(step.distance)} Km | Duration : {toHr(step.duration)} Hr
+								Distance : {toKm(step.distance)} | Duration : {toHr(step.duration)}
 							</Typography>
 					</div>
 				</div>

@@ -8,17 +8,24 @@ import { useStyles } from './styles';
 const initail = []
 
 const AutoComplete = (props) => {
-	const { placeholder, icon, onResult,style } = props;
+	const { value,placeholder='', icon, onResult,style,onFocus,onChange} = props;
 	const [showSearch, setShowSearch] = useState(false);
 
 	const inputElement = useRef(null);
 
+	const [focus,setFocus] = useState(false);
+
 	const classes = useStyles();
-	const [place, setPlace] = useState('');
+	const [place, setPlace] = useState(value);
 	const [old, setOld] = useState('');
 	const [result, setResult] = useState(initail);
 
+	useEffect(() => {
+		setPlace(value);
+	},[value]);
+
 	const handleInput = (e) => {
+		
 		setPlace(e.target.value);
 		setOld('');
 		let place = e.target.value;
@@ -50,11 +57,14 @@ const AutoComplete = (props) => {
 			setShowSearch(false);
 			setShowSearch(false);
 		}
+		if(onChange){
+			onChange(e);
+		}
 	}
 	const handleClick = (data) => {
 		setPlace(data.label);
 		if (onResult) {
-			onResult(data);
+			onResult(data.data[0]);
 		}
 		setShowSearch(false);
 	}
@@ -68,7 +78,7 @@ const AutoComplete = (props) => {
 		.then((data)=>{
 			if(onResult){
 				setShowSearch(false);
-				console.log(data.data[0]);
+				// console.log(data.data[0]);
 				onResult(data.data[0]);
 			}
 		})
@@ -84,10 +94,14 @@ const AutoComplete = (props) => {
 		)
 	});
 
+
+
 	return (
 		<div className={classes.wrapper} style={style}>
 			<div className={classes.searchInput}>
-				<div className={classes.search}>
+				<div 
+					className={classes.search} 
+					style={{border:`${(focus) ? '2px solid black':'2px solid transparent'}`}}>
 					{icon ? (icon) : (<Search className={classes.icon} />)}
 					<InputBase
 						ref={inputElement}
@@ -96,20 +110,25 @@ const AutoComplete = (props) => {
 						sx={{ ml: 1, flex: 1 }} 
 						value={(old) ? (old) : (place)} 
 						onChange={handleInput} 
-						type="text" 
+						type="search"
 						className={classes.input} 
 						placeholder={placeholder}
 						onKeyDown={(e)=>{
-							console.log('The Event : ',e);
 							if(e.keyCode === 13){
 								fetchPlace(place);
 							}
 						}}
 						onBlur={()=>{
+							setFocus(false);
 							if(place.length >=3){
 								fetchPlace(place);
 							}
-							// console.log('blur',inputElement.current);
+						}}
+						onFocus={()=>{
+							if(onFocus){
+								onFocus();
+							}
+							setFocus(true);
 						}}
 					/>
 				</div>

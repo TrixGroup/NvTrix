@@ -1,7 +1,4 @@
-﻿/* eslint-disable no-unused-expressions */
-import React from 'react';
-
-export const countries =[ 
+﻿export const countries =[ 
   {name: 'Afghanistan', code: 'AF'}, 
   {name: 'Åland Islands', code: 'AX'}, 
   {name: 'Albania', code: 'AL'}, 

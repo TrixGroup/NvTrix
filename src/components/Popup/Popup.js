@@ -14,13 +14,15 @@ function Popup(props) {
           <DialogContent>
             {children}
           </DialogContent>
+          <Divider/>
           <DialogActions>
           <Button 
                 startIcon={<Cancel/>}
-                color={'info'}
+                // color={'secondary'}
+                style={{color:'rgba(255,0,0,.78)'}}
                 fullWidth 
                 sx={{p:'10px'}}
-                variant="contained"
+                // variant="outlined"
                 onClick={(e)=>{
                     setOpenPopup(false)
                     onClose(e);

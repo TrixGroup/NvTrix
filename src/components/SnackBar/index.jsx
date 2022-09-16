@@ -1,6 +1,2 @@
-import CustomSnackbar from './CustomSnackBar';
-import SnackBar from './SnackBar';
-
-
-export {CustomSnackbar};
-export {SnackBar};
+export { default as CustomSnackbar } from "./CustomSnackBar";
+export { default as SnackBar } from "./SnackBar";
