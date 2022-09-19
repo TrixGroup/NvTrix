@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme) => ({
 		margin:theme.spacing(1),
 	},
 	groupBtn:{
-		marginLeft:theme.spacing(1.3),
+		marginLeft:theme.spacing(2),
 	},
 	floatBtn:{
 		position:'absolute',

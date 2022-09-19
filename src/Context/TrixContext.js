@@ -46,7 +46,6 @@ export const TrixProvider = ({ children }) => {
 
         const [tabValue, setTabValue] = useState('map');
 
-        const [online,setOnline] = useState(true);
 
         // -----------------DATA USE TO DRAW ROUTE ON THE MAP ARE FOUND HERE--------------
         
@@ -115,28 +114,6 @@ export const TrixProvider = ({ children }) => {
         //     } else return
         // }, [pickup, dropoff]);
 
-        let speech = new SpeechSynthesisUtterance();
-        speech.pitch = 1;
-        speech.volume = 1;
-        speech.rate = 1;
-        
-        window.addEventListener('offline', (event) => {
-            setOnline(false);
-            console.log('offline');
-
-            speech.text = "Offline";
-            
-            speechSynthesis.speak(speech);
-        });
-
-        window.addEventListener('online', (event) => {
-            setOnline(true);
-
-            console.log('online');
-            speech.text = "Offline";
-            
-            speechSynthesis.speak(speech);
-        });
 
         return (
                 <TrixContext.Provider 

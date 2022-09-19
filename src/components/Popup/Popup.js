@@ -4,7 +4,6 @@ import {Cancel} from '@mui/icons-material';
 
 function Popup(props) {
     const {title,children,openPopup,setOpenPopup,fullScreen,fullWidth,maxWidth,className,onClose} = props;
-    console.log(props);
   return (
       <Dialog open={openPopup} fullScreen={fullScreen} fullWidth={fullWidth} maxWidth={maxWidth} className={className}>
           <DialogTitle>

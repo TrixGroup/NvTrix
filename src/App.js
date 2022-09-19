@@ -4,6 +4,8 @@ import Login from './components/Users/Login';
 import SearchPlace from './pages/path/search_place';  
 import TracePath from './pages/path/TracePath';
 
+import SearchArea from './pages/SearchPlace/SearchPlace';
+
 import User from './pages/users/index';
 import PageNotFound from './pages/404/pageNotFound';
 import FullWidthTabs from './pages/404/test';
@@ -20,7 +22,7 @@ import {ThemeProvider} from '@mui/styles';
 import {TrixProvider} from './Context/TrixContext';
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 let theme = createTheme();
@@ -43,7 +45,9 @@ const App = () =>{
               <Route path="book-a-place" element={<BookPlace/>} />
               <Route path='about' element={<About/>} />
               <Route path="trace-path" element={<TracePath/>}/>
+              <Route path='search-area' element={<SearchArea/>}/>
               <Route path="*" element={<PageNotFound/>} />
+
           </Route>
         </Routes>
       </BrowserRouter>

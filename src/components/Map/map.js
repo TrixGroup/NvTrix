@@ -4,7 +4,7 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 
 import { makeStyles } from '@mui/styles';
 
-import { getMode } from '../../Fuctions';
+import { getMode, convertLatLngListToLngLat, drawRouteFromGeoApify } from '../../Fuctions';
 
 import APIService from '../../Service/APIService';
 
@@ -38,17 +38,13 @@ const Map = () => {
         profile,
         setDistance,
         setDuration,
-        setSteps,
-        setRoutesCoordinates
+        setRoutesCoordinates,
+        instructions,
+        setInstructions
     } = useContext(TrixContext);
 
-    const [routeData, setRouteData] = useState(null);
-    const [routeStepsData, setStepsData] = useState();
-    const [instructionsData, setInstructionsData] = useState();
-    const [stepPointsData, setStepPointsData] = useState();
-
-    const [pitch, setPitch] = useState(90);
-    const [bearing, setBearing] = useState(45);
+    const [pitch, setPitch] = useState(30);
+    const [bearing, setBearing] = useState(0);
 
     useEffect(() => {
         if (map.current) return;
@@ -66,8 +62,8 @@ const Map = () => {
     }, []);
 
     useEffect(() => {
-        if (map.current) {
-            if (pickup === '') {
+
+        if (pickup === '') {
                 if (marker1.current) {
                     marker1.current.remove();
                 }
@@ -77,15 +73,24 @@ const Map = () => {
                     marker2.current.remove();
                 }
             }
+    },[pickup,dropoff])
+
+    useEffect(() => {
+        if (map.current) {
             if (pickupCoordinates) {
                 if (marker1.current) {
                     marker1.current.remove();
                 }
                 marker1.current = new mapboxgl.Marker()
-                    .setLngLat(pickupCoordinates)
+                    .setLngLat([pickupCoordinates[1], pickupCoordinates[0]])
                     .setPopup(new mapboxgl.Popup().setText(pickup));
                 marker1.current.addTo(map.current);
 
+                map.current.flyTo({
+                    center: [pickupCoordinates[1], pickupCoordinates[0]],
+                    essential: true,
+                    speed: 0.2,
+                })
 
             }
 
@@ -94,59 +99,31 @@ const Map = () => {
                     marker2.current.remove();
                 }
                 marker2.current = new mapboxgl.Marker({ color: 'red' })
-                    .setLngLat(dropoffCoordinates)
+                    .setLngLat([dropoffCoordinates[1], dropoffCoordinates[0]])
                     .setPopup(new mapboxgl.Popup().setText(dropoff));
                 marker2.current.addTo(map.current);
+
+                map.current.flyTo({
+                    center: [dropoffCoordinates[1], dropoffCoordinates[0]],
+                    essential: true,
+                    speed: 0.2,
+                })
             }
         }
 
     }, [pickup, pickupCoordinates, dropoff, dropoffCoordinates])
 
-
-    const drawRoute = ({ pickupCoords, dropoffCoords }) => {
-        const coords = [pickupCoords, dropoffCoords];
-
-        APIService.getRoute({
-            profile: profile,
-            coords: coords
-        }).then((data) => {
-            // console.log({ data });
-            if (data) {
-                setRouteData(data);
-                setDistance((data.routes[0].distance * 0.001).toFixed(2));
-                setDuration((data.routes[0].duration / 60).toFixed(2));
-                setSteps(data.routes[0].legs[0].steps);
-                setRoutesCoordinates(data.routes[0].geometry);
-
-            }
-        }).catch(err => {
-            console.log(err);
-        });
-
-        // APIService.getRouteFromGeoApify({
-        //     mode:getMode(profile),
-        //     coords:coords
-        // }).then((data)=>{
-        //     console.log({data});
-        // }).catch((err)=>{
-        //     console.log(err);
-        // })
-    }
-
-
-
     useEffect(() => {
         if (pickupCoordinates && dropoffCoordinates) {
-            map.current.fitBounds([dropoffCoordinates, pickupCoordinates], { padding: 60 });
-            drawRoute({
-                pickupCoords: pickupCoordinates,
-                dropoffCoords: dropoffCoordinates
-            });
-            setPitch(60);
+            drawRouteFromGeoApify(pickupCoordinates, dropoffCoordinates, map.current, getMode(profile));
+            
+            
+            map.current.fitBounds([
+                [dropoffCoordinates[1],dropoffCoordinates[0]], 
+                [pickupCoordinates[1],pickupCoordinates[0]]], { padding: 60 });
+
         }
-    }, [dropoffCoordinates, pickupCoordinates])
-
-
+    }, [pickup,dropoff,dropoffCoordinates, pickupCoordinates,profile])
 
     return (<div ref={mapContainer} className={classes.map}></div>)
 }

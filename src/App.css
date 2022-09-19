@@ -44,3 +44,7 @@
   margin: 0;
   scroll-behavior: smooth;
 }
+
+.popup-property-label{
+  color: '#00';
+}

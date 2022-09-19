@@ -86,17 +86,20 @@ const TracePath = () => {
         		<div
         			className={classes.groupBtn}
         		>
-        			<Button
-        				style={{
-        					backgroundColor:'#000',
-                            fontWeight:'bolder',
-        				}}
-        				variant={'contained'}
-        				startIcon={<ArrowBackOutlined/>}
+        		
+                    <IconButton
+                        size={'large'}
+                        sx={{
+                            borderRadius:1,
+                            border:'1px solid #ddd',
+                        }}
                         onClick={()=>{
                             window.history.back();
                         }}
-        			>Back</Button>
+
+                    >
+                        <ArrowBackOutlined />
+                    </IconButton>
         		</div>
                 {instructions && (
                     <Paper square={true}>

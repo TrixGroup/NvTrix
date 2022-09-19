@@ -46,7 +46,7 @@ class APIService {
     const target = HOST;
 
     let url = `${target}/api/auth/`;
-    console.log(url);
+    
     return fetch(url, option)
       .then((resp) => resp.json())
       .catch((err) => err);
@@ -63,7 +63,7 @@ class APIService {
     const target = HOST;
 
     let url = `${target}/api/get_current_user/`;
-    console.log(url);
+    
     return fetch(url, option)
       .then((resp) => resp.json())
       .catch((err) => err);
@@ -101,7 +101,8 @@ class APIService {
 
   static getRouteFromGeoApify = ({ mode, coords }) => {
     coords = coords.join("|");
-    let url = `https://api.geoapify.com/v1/routing?waypoints=${coords}&mode=${mode}&details=route_details,elevation&apiKey=${this.GEOAPIFY}`;
+    let url = `https://api.geoapify.com/v1/routing?waypoints=${coords}&mode=${mode}&details=instruction_details,route_details&apiKey=${this.GEOAPIFY}`;
+    
     return fetch(url)
       .then((resp) => resp.json())
       .catch((err) => err);

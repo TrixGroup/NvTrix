@@ -1,46 +1,48 @@
-import React, {useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import AutoComplete from '../AutoComplete';
 import GeoApifyAutoComplete from '../AutoComplete/GeoApifyAutoComplete';
-import {Paper,InputBase,Button,Collapse,TextField,MenuItem} from '@mui/material';
+import { Paper, InputBase, Button, Collapse, TextField, MenuItem, ToggleButtonGroup, ToggleButton } from '@mui/material';
 
-import {MyLocation,LocationOn,NordicWalking,PedalBike,CarRepair,DirectionsBus,DirectionsCar} from '@mui/icons-material';
+import { MyLocation, LocationOn, PedalBike, CarRepair, DirectionsBus, DirectionsCar,NordicWalkingSharp } from '@mui/icons-material';
+
+import { FaWalking, FaCar, FaBicycle, FaCircle, FaSquare } from "react-icons/fa";
 
 // import style
-import {useStyles} from './style';
+import { useStyles } from './style';
 
 // import TrixContext
-import {TrixContext} from '../../Context/TrixContext';
+import { TrixContext } from '../../Context/TrixContext';
 
 import TypeWriter from '../TypeWriter';
 
-const getRoute = ({from,to}) => {
+const getRoute = ({ from, to }) => {
 
 }
 
 const FindPathLocationSelector = () => {
 
-	// check wether the input box is selected
-	const [inFocus,setInFocus] = useState('from');
+    // check wether the input box is selected
+    const [inFocus, setInFocus] = useState('from');
 
-	// initialising the class variable
-	const classes = useStyles();
+    // initialising the class variable
+    const classes = useStyles();
 
 
-	const {
-		pickup,
-		setPickup,
-		dropoff,
-		setDropOff,
-		setPickupCoordinates,
-		setDropOffCoordinates,
-		profile,
-		setProfile
-	} = useContext(TrixContext);
+    const {
+        pickup,
+        setPickup,
+        dropoff,
+        setDropOff,
+        setPickupCoordinates,
+        setDropOffCoordinates,
+        profile,
+        setProfile
+    } = useContext(TrixContext);
 
-	const handleChangeProfile = (e) => {
-		setProfile(e.target.value);
-	}
+    const handleChangeProfile = (e,profile) => {
+        setProfile(profile);
+    }
 
     return (
         <div className={classes.container}>
@@ -69,12 +71,12 @@ const FindPathLocationSelector = () => {
         			/>*/}
 
         			<GeoApifyAutoComplete
-        				icon={<MyLocation/>}
+        				icon={<FaCircle style={{transform:'scale(.7)',marginLeft:'.3em'}}/>}
 	        			style={{maxWidth:'none'}}
 	        			placeholder={'Enter Origin Location'}
 	        			value = {pickup}
 	        			onResult = {(data)=>{
-	        				setPickupCoordinates([data.properties.lon,data.properties.lat]);
+	        				setPickupCoordinates([data.properties.lat,data.properties.lon]);
 	        			}}
 	        			onFocus={()=>{
 	        				setInFocus('from');
@@ -84,13 +86,13 @@ const FindPathLocationSelector = () => {
 	        			}}
         			/>
 
-        			<AutoComplete 
-        				icon={<LocationOn/>}
+        			<GeoApifyAutoComplete 
+        				icon={<FaSquare style={{transform:'scale(.7)',marginLeft:'.3em'}}/>}
 	        			style={{maxWidth:'none'}}
 	        			placeholder={'Enter Destination Location'}
 	        			value = {dropoff}
 	        			onResult = {(data)=>{
-	        				setDropOffCoordinates([data.longitude,data.latitude])
+	        				setDropOffCoordinates([data.properties.lat,data.properties.lon])
 	        			}}
 	        			onFocus={()=>{
 	        				setInFocus('to');
@@ -99,7 +101,7 @@ const FindPathLocationSelector = () => {
 	        				setDropOff(e.target.value)
 	        			}}
         			/>
-        			<TextField
+        			{/*<TextField
 						fullWidth
 						select
 						onChange={handleChangeProfile}
@@ -108,10 +110,28 @@ const FindPathLocationSelector = () => {
 						className={classes.profile}
 						helperText = {'mode of transport'}
 					>
-						<MenuItem value={'walking'}><NordicWalking /> Walking</MenuItem>
-						<MenuItem value={'cycling'}><PedalBike/> Cycling</MenuItem>
-						<MenuItem value={'driving'}><DirectionsCar/> Driving</MenuItem>
-					</TextField>
+						<MenuItem value={'walking'}><FaWalking /> Walking</MenuItem>
+						<MenuItem value={'cycling'}><FaBicycle/> Cycling</MenuItem>
+						<MenuItem value={'driving'}><FaCar/> Driving</MenuItem>
+					</TextField>*/}
+					<ToggleButtonGroup
+						value={profile}
+					    exclusive
+					    onChange={handleChangeProfile}
+					    aria-label="text alignment"
+					    fullWidth
+					    sx={{ bgcolor: 'background.paper',color:'#000'}}
+					>
+						<ToggleButton value="walking" aria-label="walking">
+				        	<NordicWalkingSharp />
+				      	</ToggleButton>
+				      	<ToggleButton value="cycling" aria-label="cycling">
+				        	<PedalBike />
+				      	</ToggleButton>
+				      	<ToggleButton value="driving" aria-label="driving">
+				        	<DirectionsCar />
+				      	</ToggleButton>
+					</ToggleButtonGroup>
         	</div>
         </div>
     );
