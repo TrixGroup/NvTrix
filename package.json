@@ -5,8 +5,6 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@geoapify/react-geocoder-autocomplete": "^1.3.1",
-    "@geoapify/route-directions": "^1.0.4",
     "@mui/icons-material": "^5.8.2",
     "@mui/lab": "^5.0.0-alpha.90",
     "@mui/material": "^5.8.2",
@@ -19,14 +17,10 @@
     "chart.js": "^3.9.1",
     "ckeditor5": "^35.1.0",
     "dotenv": "^16.0.1",
-    "leaflet": "^1.8.0",
     "mapbox-gl": "^2.9.0-beta.1",
-    "maplibre-gl": "^2.1.9",
-    "quill": "^1.3.7",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
-    "react-map-gl": "^7.0.17",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"

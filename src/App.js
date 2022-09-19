@@ -8,7 +8,6 @@ import SearchArea from './pages/SearchPlace/SearchPlace';
 
 import User from './pages/users/index';
 import PageNotFound from './pages/404/pageNotFound';
-import FullWidthTabs from './pages/404/test';
 
 import BookPlace from './pages/BookPlace/BookPlace';
 
@@ -41,7 +40,6 @@ const App = () =>{
               <Route path="user" element={<User/>}/>
               <Route path="register" element={<Register/>} />
               <Route path="search" element={<SearchPlace/>} />
-              <Route path="test" element={<FullWidthTabs/>} />
               <Route path="book-a-place" element={<BookPlace/>} />
               <Route path='about' element={<About/>} />
               <Route path="trace-path" element={<TracePath/>}/>
