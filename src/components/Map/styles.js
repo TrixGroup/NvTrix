@@ -17,6 +17,12 @@ export const useStyles = makeStyles((theme)=>({
     top:0,
     bottom:0,
     margin:'auto',
+    display:'flex',
+    height:'100%',
+    alignItems:'center',
+    justifyContent:'center',
     zIndex:999,
+    marginRight:theme.spacing(2),
+    // backgroundColor:'rgba(0,0,0,.67)'
   }
 }));
