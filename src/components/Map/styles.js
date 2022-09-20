@@ -10,5 +10,13 @@ export const useStyles = makeStyles((theme)=>({
     height:'100%',
     width:'100%',
     position:'relative',
+  },
+  navigation_control:{
+    position:'absolute',
+    right:0,
+    top:0,
+    bottom:0,
+    margin:'auto',
+    zIndex:999,
   }
 }));
