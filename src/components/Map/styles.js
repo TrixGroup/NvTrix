@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme)=>({
   map:{
     height:'100%',
     width:'100%',
-    backgroundColor:'blue',
+    backgroundColor:'#334455',
   },
   container:{
     height:'100%',
