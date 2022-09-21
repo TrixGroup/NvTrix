@@ -35,10 +35,10 @@ const CustomMap = (props) => {
 
     const handleMapZoom = (type)=>{
         if(type==='inc'){
-            map.zoomIn({duration: 1000});
+            map.current.zoomIn({duration: 1000});
         }
         else{
-           map.zoomOut({duration: 1000});
+           map.current.zoomOut({duration: 1000});
         }
     }
 
