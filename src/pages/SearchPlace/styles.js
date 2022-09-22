@@ -15,6 +15,7 @@ export const useStyles = makeStyles((theme)=>({
 		justifyContent:'center',
 		alignItems:'center',
 		cursor:'pointer',
+		pointerEvent:'none',
 	},
 	btn:{
 		borderRadius:theme.shape.borderRadius,

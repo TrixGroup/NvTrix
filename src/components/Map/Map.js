@@ -31,7 +31,7 @@ const CustomMap = (props) => {
             container: mapContainer.current,
             // style: 'mapbox://styles/mapbox/streets-v11',
             style:_style,
-            center: [0, 0], //starting positiong
+            center: center, //starting positiong
             zoom: zoom, // starting zoom
         });
     },[]);
@@ -41,6 +41,24 @@ const CustomMap = (props) => {
             map.current.setStyle(style);
         }
     },[style]);
+
+
+    useEffect(()=>{
+        if(navigator.geolocation){
+
+            function success({coords}){
+                console.log({coords});
+            }
+
+            function error(err){
+                console.log(err);
+            }
+
+            navigator.geolocation.getCurrentPosition(success,error);
+        }
+    },[])
+
+
 
     console.log(style);
 

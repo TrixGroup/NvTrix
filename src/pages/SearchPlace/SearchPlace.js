@@ -24,7 +24,6 @@ const SearchPlace = () => {
                             '& > *': {
                               m: .5,
                             },
-                            'mb':2, 
                         }}
                     >
                         <ButtonGroup orientation="vertical">

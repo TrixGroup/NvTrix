@@ -12,7 +12,7 @@ const getLocationCoordinates = async (req,res) =>{
 
 		res.status(200).send({message:'success',data:data.data});
 	}catch(error){
-		res.status(050).send({message:'error',error:error.message});
+		res.status(500).send({message:'error',error:error.message});
 	}
 }
 
