@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Grid,IconButton,Box,ButtonGroup} from '@mui/material';
 
-import {Search} from '@mui/icons-material';
+import {SearchRounded} from '@mui/icons-material';
 
 import Map from '../../components/Map/Map';
 
@@ -27,7 +27,7 @@ const SearchPlace = () => {
                         <ButtonGroup>
 
                         <IconButton>
-                            <Search style={{color:'#fff',fontWeight:'900'}}/>
+                            <SearchRounded style={{color:'#fff',fontWeight:'900'}}/>
                         </IconButton>
                         </ButtonGroup>
                     </Box>

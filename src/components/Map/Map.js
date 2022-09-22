@@ -6,7 +6,7 @@ import APIService from '../../Service/APIService';
 import {mapStyle} from '../../Service/mapStyle';
 
 import { IconButton, ButtonGroup, Box ,Divider} from '@mui/material';
-import { Add, Remove,NearMe } from '@mui/icons-material';
+import { AddRounded, RemoveRounded,NearMeRounded } from '@mui/icons-material';
 
 import { useStyles } from './styles';
 
@@ -66,7 +66,7 @@ const CustomMap = (props) => {
                         backgroundColor:'rgba(0,0,0,.5)',
                         borderRadius:2,
                         '& > *': {
-                          m: .7,
+                          m: .5,
                         },
                         'mb':2, 
                     }}
@@ -75,7 +75,7 @@ const CustomMap = (props) => {
                         orientation="vertical"
                     >
                     <IconButton>
-                        <NearMe style={{color:'#fff',}}/>
+                        <NearMeRounded style={{color:'#fff',}}/>
                     </IconButton>
                 </ButtonGroup>
                 </Box>
@@ -85,7 +85,7 @@ const CustomMap = (props) => {
                         backgroundColor:'rgba(0,0,0,.5)',
                         borderRadius:2,
                         '& > *': {
-                          m: .7,
+                          m: .5,
                         },
                     }}
                 >
@@ -94,11 +94,11 @@ const CustomMap = (props) => {
                         aria-label="vertical outlined button group"
                     >
                     <IconButton onClick={()=>handleMapZoom('inc')}>
-                        <Add style={{color:'#fff'}}/>
+                        <AddRounded style={{color:'#fff'}}/>
                     </IconButton>
                     <Divider/>
                     <IconButton onClick={()=>handleMapZoom('dec')}>
-                        <Remove style={{color:'#fff'}}/>
+                        <RemoveRounded style={{color:'#fff'}}/>
                     </IconButton>
                     </ButtonGroup>
                 </Box>
