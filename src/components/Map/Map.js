@@ -48,6 +48,16 @@ const CustomMap = (props) => {
 
             function success({coords}){
                 console.log({coords});
+                if(map.current){
+                    map.current.flyTo({
+                        center:[coords.longitude,coords.latitude],
+                        essential: true,
+                        speed: 0.2,
+                        zoom:9
+                    })
+                    map.current.setCenter([coords.longitude,coords.latitude]);
+
+                }
             }
 
             function error(err){
