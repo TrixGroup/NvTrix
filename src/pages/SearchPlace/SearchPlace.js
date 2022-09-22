@@ -19,12 +19,15 @@ const SearchPlace = () => {
                     <Box 
                         sx={{
                             display: 'flex',
+                            backgroundColor:'rgba(0,0,0,.5)',
+                            borderRadius:2,
                             '& > *': {
-                              m: .3,
+                              m: .5,
                             },
-                          }}
+                            'mb':2, 
+                        }}
                     >
-                        <ButtonGroup>
+                        <ButtonGroup orientation="vertical">
 
                         <IconButton>
                             <SearchRounded style={{color:'#fff',fontWeight:'900'}}/>

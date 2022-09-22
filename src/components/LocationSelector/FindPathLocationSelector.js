@@ -16,10 +16,6 @@ import { TrixContext } from '../../Context/TrixContext';
 
 import TypeWriter from '../TypeWriter';
 
-const getRoute = ({ from, to }) => {
-
-}
-
 const FindPathLocationSelector = () => {
 
     // check wether the input box is selected
