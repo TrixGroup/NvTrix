@@ -6,7 +6,7 @@ import APIService from '../../Service/APIService';
 import {mapStyle} from '../../Service/mapStyle';
 
 import { IconButton, ButtonGroup, Box ,Divider} from '@mui/material';
-import { Add, Remove,NearMes } from '@mui/icons-material';
+import { Add, Remove,NearMe } from '@mui/icons-material';
 
 import { useStyles } from './styles';
 
@@ -71,9 +71,13 @@ const CustomMap = (props) => {
                         'mb':2, 
                     }}
                 >
+                <ButtonGroup
+                        orientation="vertical"
+                    >
                     <IconButton>
-                        <NearMes style={{color:'#fff',}}/>
+                        <NearMe style={{color:'#fff',}}/>
                     </IconButton>
+                </ButtonGroup>
                 </Box>
                 <Box
                     sx={{
