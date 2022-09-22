@@ -6,7 +6,7 @@ import APIService from '../../Service/APIService';
 import {mapStyle} from '../../Service/mapStyle';
 
 import { IconButton, ButtonGroup, Box ,Divider} from '@mui/material';
-import { Add, Remove } from '@mui/icons-material';
+import { Add, Remove,NearMes } from '@mui/icons-material';
 
 import { useStyles } from './styles';
 
@@ -24,7 +24,6 @@ const CustomMap = (props) => {
     const map = useRef(null);
     const mapContainer = useRef(null);
 
-    const [mapZoom,setMapZoom] = useState(zoom);
 
     useEffect(()=>{
         if(map.current)  return;
@@ -33,7 +32,7 @@ const CustomMap = (props) => {
             // style: 'mapbox://styles/mapbox/streets-v11',
             style:_style,
             center: [0, 0], //starting positiong
-            zoom: mapZoom, // starting zoom
+            zoom: zoom, // starting zoom
         });
     },[]);
 
@@ -64,10 +63,25 @@ const CustomMap = (props) => {
                 <Box
                     sx={{
                         display: 'flex',
-                        backgroundColor:'rgba(0,0,0,.3)',
+                        backgroundColor:'rgba(0,0,0,.5)',
                         borderRadius:2,
                         '& > *': {
-                          m: 1,
+                          m: .7,
+                        },
+                        'mb':2, 
+                    }}
+                >
+                    <IconButton>
+                        <NearMes style={{color:'#fff',}}/>
+                    </IconButton>
+                </Box>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        backgroundColor:'rgba(0,0,0,.5)',
+                        borderRadius:2,
+                        '& > *': {
+                          m: .7,
                         },
                     }}
                 >

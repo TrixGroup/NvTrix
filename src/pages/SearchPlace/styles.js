@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme)=>({
 		left:theme.spacing(2),
 		zIndex:999,
 		borderRadius:theme.shape.boderRadius,
-		backgroundColor:'rgba(0,0,0,.3)',
+		backgroundColor:'rgba(0,0,0,.5)',
 		display:'flex',
 		justifyContent:'center',
 		alignItems:'center',

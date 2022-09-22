@@ -21,6 +21,7 @@ export const useStyles = makeStyles((theme)=>({
     height:'100%',
     alignItems:'center',
     justifyContent:'center',
+    flexDirection:'column',
     zIndex:999,
     marginRight:theme.spacing(2),
     // backgroundColor:'rgba(0,0,0,.67)'
