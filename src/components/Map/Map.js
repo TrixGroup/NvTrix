@@ -56,9 +56,9 @@ const CustomMap = (props) => {
                                 center:[coords.longitude,coords.latitude],
                                 essential: true,
                                 speed: 0.2,
-                                zoom:13
+                                zoom:10
                             });
-                            map.current.setZoom(10);
+                            // map.current.setZoom(10);
                             map.current.setCenter([coords.longitude,coords.latitude]);    
                         }
                         
