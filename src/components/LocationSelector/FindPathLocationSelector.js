@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import AutoComplete from '../AutoComplete';
+// import AutoComplete from '../AutoComplete';
 import GeoApifyAutoComplete from '../AutoComplete/GeoApifyAutoComplete';
 import { Paper, InputBase, Button, Collapse, TextField, MenuItem, ToggleButtonGroup, ToggleButton } from '@mui/material';
 

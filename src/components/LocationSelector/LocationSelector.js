@@ -1,6 +1,8 @@
 import { useState, useContext } from 'react';
 
-import AutoComplete from '../AutoComplete';
+// import AutoComplete from '../AutoComplete';
+import GeoApifyAutoComplete from '../AutoComplete/GeoApifyAutoComplete';
+
 import { Paper, InputBase, Button, Collapse } from '@mui/material';
 
 import { Numbers, MyLocation, LocationOn, ExpandLess, ExpandMore } from '@mui/icons-material';
@@ -16,7 +18,16 @@ const LocationSelector = () => {
     const classes = useStyles();
     const [inFocus, setInFocus] = useState('from');
 
-    const { pickup, setPickup, dropoff, setDropOff, numberOfPlace, setNumberOfPlace } = useContext(TrixContext)
+    const { 
+    	pickup, 
+    	setPickup, 
+    	dropoff, 
+    	setDropOff, 
+    	numberOfPlace, 
+    	setNumberOfPlace, 
+    	setPickupCoordinates, 
+    	setDropOffCoordinates 
+    } = useContext(TrixContext)
 
     const [focus, setFocus] = useState(false);
     const [collapse, setCollapse] = useState(false);
@@ -42,7 +53,6 @@ const LocationSelector = () => {
             setNumberOfPlace('');
         }
     }
-    console.log({ inFocus });
     return (
         <div className={classes.container}>
         	<div className={classes.searchHeader}>
@@ -53,13 +63,14 @@ const LocationSelector = () => {
         	</div>
         	<div className={classes.inputBoxes}>
         		
-        			<AutoComplete 
+        			<GeoApifyAutoComplete 
         				icon={<MyLocation/>}
-	        			style={{maxWidth:'none'}}
+	        			style={{maxWidth:'97%'}}
 	        			placeholder={'Enter Pickup Location'}
 	        			value={pickup}
 	        			onResult = {(data)=>{
-	        				setPickup(data);
+	        				console.log(data.properties)
+	        				setPickupCoordinates([data.properties.lat,data.properties.lon]);
 	        			}}
 	        			onFocus={()=>{
 	        				setInFocus('from');
@@ -68,13 +79,13 @@ const LocationSelector = () => {
 	        				setPickup(e.target.value);
 	        			}}
         			/>
-        			<AutoComplete 
+        			<GeoApifyAutoComplete 
         				icon={<LocationOn/>}
-	        			style={{maxWidth:'none'}}
+	        			style={{maxWidth:'97%'}}
 	        			placeholder={'Enter Dropoff Location'}
 	        			value={dropoff}
 	        			onResult = {(data)=>{
-	        				setPickup(data);
+	        				setDropOffCoordinates([data.properties.lat,data.properties.lon])
 	        			}}
 	        			onFocus={()=>{
 	        				setInFocus('to');
@@ -87,6 +98,7 @@ const LocationSelector = () => {
 	        			<div 
 	        				className={classes.flex} 
 	        				style={{
+	        					maxWidth:'97%',
 	        					borderColor:`${(focus)? 'black' : 'transparent'}`,
 	        				}}>
 	        				<Numbers 

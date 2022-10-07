@@ -4,7 +4,8 @@ import {makeStyles} from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
 	wrapper:{
 		width:'100%',
-		height:'100%'
+		height:'100%',
+		// backgroundColor:'red',
 	},
 	rideSelectorContainer:{
 		width:'100%',

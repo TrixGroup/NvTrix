@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme) => ({
 		fontSize: '2.5em'
 	},
 	wrapper: {
-		maxWidth: 400,
+		// maxWidth: 400,
 		width: '100%',
 		display: 'block',
 		backgroundColor: '#fff',
@@ -47,6 +47,7 @@ export const useStyles = makeStyles((theme) => ({
 		margin: 'auto',
 		maxHeight: 210,
 		overflowY: 'auto',
+		overflowX:'hidden',
 		backgroundColor: '#fff',
 		marginTop: theme.spacing(.6),
 		padding:0,
@@ -63,8 +64,8 @@ export const useStyles = makeStyles((theme) => ({
 	},
 	li: {
 		listStyle: 'none',
-		// padding:'8px 12px',
-		padding: `${theme.spacing(.6)}px ${theme.spacing(1)}px ${theme.spacing(.3)}px ${theme.spacing(1)}px`,
+		padding:'3px',
+		// padding: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px`,
 		width: '100%',
 		cursor: 'pointer',
 		textAlign: 'left',
@@ -79,11 +80,11 @@ export const useStyles = makeStyles((theme) => ({
 		'& p,small': {
 			padding: 0,
 			margin: 0,
-			paddingLeft: theme.spacing(.6),
-			paddingRight: theme.spacing(.6),
+			paddingLeft: theme.spacing(1),
+			paddingRight: theme.spacing(1),
 		},
 		'& p:first-child': {
-			fontSize: '.9em',
+			fontSize: '1em',
 		}
 	}
 }));

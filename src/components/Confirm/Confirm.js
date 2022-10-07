@@ -23,6 +23,7 @@ const Confirm = ()=>{
 		<div className={classes.wrapper}>
 			<div className={classes.rideSelectorContainer}>
 				{/* Ride Selector */}
+				{/*<RideSelector/>*/}
 				{setPickupCoordinates && dropoffCoordinates && (<RideSelector />)}
 			</div>
 			<div className={classes.confirmButtonContainer}>

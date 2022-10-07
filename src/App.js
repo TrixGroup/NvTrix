@@ -3,14 +3,10 @@ import Register from './components/Users/Register';
 import Login from './components/Users/Login';
 import SearchPlace from './pages/path/search_place';  
 import TracePath from './pages/path/TracePath';
-
 import SearchArea from './pages/SearchPlace/SearchPlace';
-
 import User from './pages/users/index';
 import PageNotFound from './pages/404/pageNotFound';
-
 import BookPlace from './pages/BookPlace/BookPlace';
-
 import { About } from './pages/About/About';
 
 import { Route, BrowserRouter, Routes } from "react-router-dom";
@@ -35,7 +31,7 @@ const App = () =>{
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route path='' element={<User/>} />
+            <Route path='' element={<Login/>} />
               <Route path="login" element={<Login/>} />
               <Route path="user" element={<User/>}/>
               <Route path="register" element={<Register/>} />
@@ -45,7 +41,6 @@ const App = () =>{
               <Route path="trace-path" element={<TracePath/>}/>
               <Route path='search-area' element={<SearchArea/>}/>
               <Route path="*" element={<PageNotFound/>} />
-
           </Route>
         </Routes>
       </BrowserRouter>

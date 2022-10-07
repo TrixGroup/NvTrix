@@ -35,15 +35,15 @@ const useStyles = makeStyles((theme)=>({
 
 	form:{
 		position:'absolute',
-		
 		zIndex:999,
-		overflow:'scroll',
 		[theme.breakpoints.up('sm')]:{
 			bottom:28,
 			left:10,
-			top:150,
+			top:200,
 			maxHeight:620,
 			width:400,
+			overflowY:'scroll',
+			overflowX:'hidden'
 		},
 		[theme.breakpoints.down('sm')]:{
 			padding:theme.spacing(1),

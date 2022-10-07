@@ -4,14 +4,17 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
     container: {
         width: '100%',
-        // backgroundColor:'#342',
-        padding: theme.spacing(1),
+        padding: theme.spacing(.5),
         marginBottom: theme.spacing(1),
+        display:'flex',
+        flexDirection:'column',
+
     },
     inputBoxes: {
+        width:'100%',
         display: 'flex',
         flexDirection: 'column',
-        padding: theme.spacing(1)
+        padding: theme.spacing(.5)
     },
     searchHeader: {
         fontSize: '1.7em',

@@ -145,6 +145,10 @@ const SearchPlace = () => {
           <GeoApifyAutoComplete
             icon={<Search style={{ paddingLeft: 2 }} />}
             placeholder={"Search A Location..."}
+            style={{maxWidth:`300px`}}  
+            onFocus={(e)=>{
+              console.log('focus');
+            }}
             onResult={(data) => {
               console.log("Data from geoapify", { data });
               setLat(data.properties.lat);

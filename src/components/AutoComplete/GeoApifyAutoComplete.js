@@ -117,9 +117,9 @@ const GeoAutoComplete = (props) => {
                 fetchPlace(place);
               }
             }}
-            onFocus={() => {
+            onFocus={(e) => {
               if (onFocus) {
-                onFocus();
+                onFocus(e);
               }
               setFocus(true);
             }}
@@ -141,7 +141,7 @@ const GeoAutoComplete = (props) => {
                   handleClick(dt);
                 }}
               >
-                <p align={"left"}>{dt.properties.address_line1}</p>
+                <p style={{fontSize:'.8em',fontWeight:'bold'}} align={"left"}>{dt.properties.address_line1}</p>
                 <small align={"right"} style={{ fontSize: ".6em" }}>
                   {dt.properties.formatted}
                 </small>

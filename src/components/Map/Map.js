@@ -63,7 +63,7 @@ function add3DBuild(map) {
 
 const CustomMap = (props) => {
 
-    const { zoom = 3, center = [0, 0], style = mapStyle.navigation_dark } = props;
+    const { zoom = 3, center = [0, 0], style = mapStyle.navigation_dark, location = '' } = props;
 
     const classes = useStyles();
 
@@ -72,6 +72,7 @@ const CustomMap = (props) => {
     const map = useRef(null);
     const mapContainer = useRef(null);
 
+    const marker = useRef(null);
 
     useEffect(() => {
         if (map.current) return;
@@ -80,7 +81,8 @@ const CustomMap = (props) => {
             // style: 'mapbox://styles/mapbox/streets-v11',
             style: _style,
             center: center, //starting positiong
-            zoom: zoom, // starting zoom
+            zoom: zoom, // starting zoom,
+            antialias: true
         });
     }, []);
 
@@ -90,23 +92,49 @@ const CustomMap = (props) => {
         }
     }, [style]);
 
+    useEffect(() => {
+        if (map.current) {
+            // map.current.setCenter(center);
+            map.current.flyTo({
+                center: center,
+                essential: true,
+                speed: 0.2,
+                zoom: 15
+            });
+
+            if (center === [0, 0]) {
+                return;
+            } else {
+                if(marker.current === null){
+                    return;
+                }
+                if (marker.current || location === '') {
+                    marker.current.remove();
+                } else {
+                    marker.current = new mapboxgl.Marker()
+                        .setLngLat(center)
+                        .setPopup(new mapboxgl.Popup().setText(location));
+                    marker.current.addTo(map.current)
+                }
+            }
+        }
+    }, [center, location])
+
 
     useEffect(() => {
         if (navigator.geolocation) {
 
             function success({ coords }) {
-                console.log({ coords });
                 if (map.current) {
-                    console.log(coords.longitude);
                     map.current.on('load', () => {
                         if (map.current.isStyleLoaded()) {
                             map.current.flyTo({
-                                center: [coords.longitude, coords.latitude],
+                                center: [coords.lon, coords.lat],
                                 essential: true,
                                 speed: 0.2,
-                                zoom: 10
+                                zoom: 6
                             });
-                            map.current.setZoom(10);
+                            // map.current.setZoom(10);
                             map.current.setCenter([coords.longitude, coords.latitude]);
 
                             add3DBuild(map.current);
@@ -123,10 +151,6 @@ const CustomMap = (props) => {
             navigator.geolocation.getCurrentPosition(success, error);
         }
     }, [])
-
-
-
-    console.log(style);
 
     const handleMapZoom = (type) => {
         if (map.current) {
@@ -157,7 +181,9 @@ const CustomMap = (props) => {
                 <ButtonGroup
                         orientation="vertical"
                     >
-                    <IconButton>
+                    <IconButton onClick={()=>{
+                        map.current.removeLayer('add-3d-buildings');
+                    }}>
                         <NearMeRounded style={{color:'#fff',}}/>
                     </IconButton>
                 </ButtonGroup>
@@ -191,6 +217,6 @@ const CustomMap = (props) => {
     );
 };
 
-
+CustomMap.displayName = "CustomMap";
 
 export default CustomMap;
